@@ -22,13 +22,13 @@ public class AccountService {
 
     private void verifyDestinationField(EventRegistry event){
         if (Optional.ofNullable(event.destination()).isEmpty()){
-            throw new BadRequestException("destination must be filled.");
+            throw new BadRequestException("destination field is required.");
         }
     }
 
     private void verifyOriginField(EventRegistry event){
         if (Optional.ofNullable(event.origin()).isEmpty()){
-            throw new BadRequestException("origin must be filled.");
+            throw new BadRequestException("origin field is required.");
         }
     }
 
@@ -67,7 +67,7 @@ public class AccountService {
         Account destination = this.accountsRepository.getById(event.destination());
 
         if(origin.getId().equals(destination.getId())){
-            throw new BadRequestException("should transfer for another account.");
+            throw new BadRequestException("destination account must be different from the origin account.");
         }
 
         if (origin.getBalance() >= event.amount()){

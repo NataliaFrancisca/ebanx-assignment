@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
 public record EventRegistry(
-        @NotNull(message = "must be filled.")
+        @NotNull(message = "type must be provided")
         EventType type,
-        @NotNull(message = "must be filled.")
-        @PositiveOrZero(message = "must be a positive number.")
+        @NotNull(message = "amount must be provided")
+        @PositiveOrZero(message = "amount must be a positive number.")
         Double amount,
         String origin,
         String destination
