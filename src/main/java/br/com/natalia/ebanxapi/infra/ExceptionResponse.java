@@ -5,20 +5,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import java.util.NoSuchElementException;
+
 import java.util.Objects;
 
 @RestControllerAdvice
-public class ExcepctionResponse {
+public class ExceptionResponse {
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity error404(){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("OK");
+    public ResponseEntity error404(NoSuchElementException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity error400(BadRequestException badRequestException){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(badRequestException.getMessage());
+    public ResponseEntity error400(BadRequestException exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
