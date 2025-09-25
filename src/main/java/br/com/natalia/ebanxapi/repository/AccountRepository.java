@@ -19,7 +19,7 @@ public class AccountRepository {
         var account = Optional.ofNullable(accounts.get(id));
 
         if (account.isEmpty()){
-            throw new NoSuchElementException("OK");
+            throw new NoSuchElementException("0");
         }
 
         return account.get();
