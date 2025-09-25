@@ -9,6 +9,7 @@ import br.com.natalia.ebanxapi.model.event.responses.WithdrawResponse;
 import br.com.natalia.ebanxapi.service.AccountService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,17 +27,17 @@ public class EventController {
     public ResponseEntity<EventResponse> event(@Valid @RequestBody EventRegistry event){
         if (event.type().equals(EventType.deposit)){
             DepositResponse response = this.accountService.registryDeposit(event);
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
 
         if (event.type().equals(EventType.withdraw)){
             WithdrawResponse response = this.accountService.registryWithdraw(event);
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
 
         if (event.type().equals(EventType.transfer)){
             TransferResponse response = this.accountService.registryTransfer(event);
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
 
         return ResponseEntity.noContent().build();
