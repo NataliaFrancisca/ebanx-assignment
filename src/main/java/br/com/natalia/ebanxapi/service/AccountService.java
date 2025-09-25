@@ -1,6 +1,5 @@
 package br.com.natalia.ebanxapi.service;
 import br.com.natalia.ebanxapi.infra.BadRequestException;
-import br.com.natalia.ebanxapi.infra.NoSuchElementException;
 import br.com.natalia.ebanxapi.model.account.Account;
 import br.com.natalia.ebanxapi.model.event.responses.DepositResponse;
 import br.com.natalia.ebanxapi.model.event.EventRegistry;
@@ -80,13 +79,8 @@ public class AccountService {
     }
 
     public Double getBalance(String accountId){
-        Optional<Account> accountOptional = this.accountsRepository.findById(accountId);
-
-        if (accountOptional.isEmpty()){
-            throw new NoSuchElementException("0");
-        }
-
-        return accountOptional.get().getBalance();
+        Account origin = this.accountsRepository.getById(accountId);
+        return origin.getBalance();
     }
 
     public void reset(){
