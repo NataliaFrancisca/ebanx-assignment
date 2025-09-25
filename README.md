@@ -29,3 +29,13 @@
 - [X] withdraw from non-existing account
 - [X] transfer from existing account
 - [X] transfer from non-existing account
+
+## how to run the API:
+
+> make sure you have **Java** installed on your machine.
+
+1. clone this repository `https://github.com/NataliaFrancisca/ebanx-assignment`
+2. access the folder ebanxapi
+3. run the application sugin Maven `mvn spring-boot:run`
+   
+> The API will start on http://localhost:8080 by default.
